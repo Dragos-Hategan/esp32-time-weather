@@ -18,9 +18,9 @@ Minimal, production-minded example that shows real-time clock via SNTP and BME28
 - ESP32 dev board (ESP-WROOM-32 class; ESP-IDF 5.x)
 - SSD1306 OLED 128×64 (I²C, addr 0x3C/0x3D)
 - BME280 (I²C, addr 0x76/0x77)
-- Default pins (changeable in headers):
-- SDA = GPIO 23, SCL = GPIO 22
-- I²C clock 400 kHz
+- Default pins (changeable in headers):  
+  > SDA = GPIO 23, SCL = GPIO 22
+- Wires
 - Pull-ups 4.7–10 kΩ recommended for longer wires
 
 ## Setup
@@ -29,7 +29,7 @@ Minimal, production-minded example that shows real-time clock via SNTP and BME28
 ## API overview
 ### Wi-Fi (wifi.h)
 - void wifi_init_sta(void);
-Initializes NVS, netif, event loop, registers handlers, sets STA config from config.h, starts Wi-Fi, and blocks until IP_EVENT_STA_GOT_IP.  
+Initializes NVS, netif, event loop, registers handlers, sets STA config, starts Wi-Fi, and blocks until IP_EVENT_STA_GOT_IP.  
   
 Events handled
 - WIFI_EVENT_STA_START → connect
@@ -51,8 +51,8 @@ Uses esp_netif_sntp_sync_wait(). Fallback: checks tm_year to avoid false negativ
 print_data() composes the UI:
 - Row 1: time (HH:MM:SS)
 - Row 2: date (YYYY-MM-DD)
-- Rows 4–6: Hum / Temp / Pres (centered)
-- 
+- Rows 4–6: Hum / Temp / Pres
+
 ### BME280 (bme280_read.h, bme280_i2c.h)
 - bme_forced_read_once(struct bme280_dev *dev, struct bme280_data *out);  
 Triggers one conversion in FORCED mode; returns temperature (°C), pressure (Pa), humidity (%).
@@ -63,9 +63,9 @@ Triggers one conversion in FORCED mode; returns temperature (°C), pressure (Pa)
 Keep ESP_ERROR_CHECK() for critical init (I²C/SSD1306/BME bring-up).
 At runtime, prefer ESP_RETURN_ON_ERROR() + retries/recovery for transient I²C timeouts or sensor hiccups to avoid panic-reboots.
 - **I²C stability**  
-If you see sporadic NACKs: shorten wires, add proper pull-ups, try 100 kHz, or tune glitch filters if your wrapper supports it.
+If you see sporadic NACKs: shorten wires, add proper pull-ups, try 100 kHz, or **tune glitch filters** if your wrapper supports it.
 - **Centering math**  
-With FONT_8x8, horizontal center is:
-> x = (WIDTH/2) - ((strlen(text) * 8) / 2)
-- **Pressure units*  
+With FONT_8x8, horizontal center is:  
+  > x = (WIDTH/2) - ((strlen(text) * 8) / 2)
+- **Pressure units**  
 BME280 raw pressure is in Pa; divide by 100.0 for hPa.
