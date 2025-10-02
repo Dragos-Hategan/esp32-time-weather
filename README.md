@@ -23,6 +23,9 @@ Minimal, production-minded example that shows real-time clock via SNTP and BME28
 - I²C clock 400 kHz
 - Pull-ups 4.7–10 kΩ recommended for longer wires
 
+## Setup
+![Setup](docs/Setup.jpg)
+
 ## API overview
 ### Wi-Fi (wifi.h)
 - void wifi_init_sta(void);
