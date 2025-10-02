@@ -136,7 +136,7 @@ static void print_data(void)
  *
  * @param[in] arg Unused.
  *
- * @note Runs forever with a 5 s period.
+ * @note Runs forever with a 2.5s period.
  * @note Stack size and priority are configured in app_main() when creating the task.
  */
 void sensor_task(void *arg)

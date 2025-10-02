@@ -1,8 +1,8 @@
 #ifndef WIFI_H
 #define WIFI_H
 
-#define WIFI_SSID "Malware v0.2.4"
-#define WIFI_PASS "SalamEsteMagnificul!"
+#define WIFI_SSID "WIFI_SSID"
+#define WIFI_PASS "WIFI_PASS"
 
 /**
  * @brief Initialize Wi-Fi in STA mode and wait for IP.
