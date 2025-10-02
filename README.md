@@ -1,4 +1,4 @@
-# ESP32 Time + Weather (SSD1306, BME280, SNTP, Wi-Fi) — ESP-IDF
+# ESP32 Time + Weather (SSD1306, BME280, SNTP, Wi-Fi)
 
 > **Why this repo?**  
 Minimal, production-minded example that shows real-time clock via SNTP and BME280 readings rendered to an SSD1306 OLED over the new ESP-IDF i2c_master_* API. Concise modules, clear concurrency, and sensible defaults.
